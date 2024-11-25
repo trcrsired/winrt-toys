@@ -23,3 +23,12 @@ int main() try {
   ::fast_io::perr("Unknown exception\n");
   return 1;
 }
+/*
+Need geolocation permission from windows settings for desktop applications
+clang++ -o main.exe main.cpp -include-pch pch.hpp.pch -O3 -std=c++26 -flto=thin --config=d:\cfgs\x86_64-windows-msvc.cfg
+
+D:\msys64\home\unlvs\projects\winui-toys\0001.geolocation>main.exe
+Latitude=42.0721
+Longitude=-75.9086
+altitude=0
+*/
