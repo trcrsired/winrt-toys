@@ -16,9 +16,6 @@ int main() try {
 } catch (::winrt::hresult_error const &e) {
   ::fast_io::perrln(e.message());
   return 1;
-} catch (::std::exception const &e) {
-  ::fast_io::perrln(fast_io::mnp::os_c_str(e.what()));
-  return 1;
 } catch (...) {
   ::fast_io::perr("Unknown exception\n");
   return 1;
