@@ -20,7 +20,7 @@ class App : public winrt::Microsoft::UI::Xaml::ApplicationT<App>
           hstr = ::fast_io::wconcat_winrt_hstring(
             L"Latitude=", coordinate.Latitude,
             L"\nLongitude=", coordinate.Longitude,
-            L"\naltitude=", coordinate.Altitude);
+            L"\nAltitude=", coordinate.Altitude);
         }
         catch (::winrt::hresult_error const &e) {
           hstr = e.message();
