@@ -21,6 +21,11 @@ int main()
 }
 
 /*
+You need:
+https://github.com/trcrsired/windows-msvc-sysroot
+and clang of course
+https://github.com/trcrsired/llvm-releases/releases
+
 clang++ -c pch.hpp -O3 -std=c++26 -flto=thin --config=d:\cfgs\x86_64-windows-msvc.cfg -fuse-ld=lld
 clang++ -o main.exe main.cpp -include-pch pch.hpp.pch -O3 -std=c++26 -flto=thin -fuse-ld=lld --config=d:\cfgs\x86_64-windows-msvc.cfg -lole32 -loleaut32 -lruntimeobject -lmicrosoft.windowsappruntime.bootstrap
 
