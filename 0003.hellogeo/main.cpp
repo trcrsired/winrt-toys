@@ -27,7 +27,6 @@ class App : public winrt::Microsoft::UI::Xaml::ApplicationT<App>
         } catch (...) {
           hstr = L"Unknown EH";
         }
-        textblock = winrt::Microsoft::UI::Xaml::Controls::TextBlock();
         textblock.Text(hstr);
         window.Content(textblock);
         window.Activate();
@@ -38,7 +37,7 @@ class App : public winrt::Microsoft::UI::Xaml::ApplicationT<App>
     }
   private:
     winrt::Microsoft::UI::Xaml::Window window{ nullptr };
-    winrt::Microsoft::UI::Xaml::Controls::TextBlock textblock{ nullptr };
+    winrt::Microsoft::UI::Xaml::Controls::TextBlock textblock{ };
 };
 
 int main()
