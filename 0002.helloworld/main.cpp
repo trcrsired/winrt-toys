@@ -1,72 +1,29 @@
-
-using namespace winrt;
-using namespace Windows::UI::Xaml;
-using namespace Windows::UI::Xaml::Controls;
-using namespace Windows::UI::Xaml::Markup;
-using namespace Windows::UI::Xaml::Navigation;
-
-struct App : winrt::Windows::UI::Xaml::ApplicationT<App>
+class App : public winrt::Microsoft::UI::Xaml::ApplicationT<App>
 {
-    App() {
-//        this->InitializeComponent();
-    }
-    
-    void OnLaunched(winrt::Windows::ApplicationModel::Activation::LaunchActivatedEventArgs const&)
+  public:
+    void OnLaunched(winrt::Microsoft::UI::Xaml::LaunchActivatedEventArgs const &)
     {
-//        winrt::Window window = winrt::Window::Current();
-//        auto mainPage = winrt::make<winrt::Windows::UI::Xaml::MainPage>();
-//        window.Content(mainPage);
-//        window.Activate();
+        window = winrt::Microsoft::UI::Xaml::Window();
+        window.Title(L"Win UI3 Main Window");
+        window.Activate();
     }
+
+  private:
+    winrt::Microsoft::UI::Xaml::Window window{nullptr};
 };
 
-int main() try{
-//  ::fast_io::native_file_loader mainpagexml("mainpage.xml");
-
-
-  ::winrt::init_apartment();
-
-    winrt::Windows::UI::Xaml::Application::Start([&](auto &&)
-    {});
-#if 0
-  using namespace winrt;
-  using namespace Windows::Foundation;
-  using namespace Windows::Devices::Geolocation;
-  using namespace ::fast_io::io;
-    // 创建主窗口
-    Windows::UI::Xaml::Window window = Windows::UI::Xaml::Window::Current();
-        TextBlock textBlock;
-    textBlock.Text(L"Hello, World!");
-    textBlock.HorizontalAlignment(HorizontalAlignment::Center);
-    textBlock.VerticalAlignment(VerticalAlignment::Center);
-
-    TextBlock textBlock;
-    textBlock.Text(L"Hello, World!");
-    textBlock.HorizontalAlignment(HorizontalAlignment::Center);
-    textBlock.VerticalAlignment(VerticalAlignment::Center);
-
-    
-    // 将 TextBlock 设置为窗口内容
-    window.Content(textBlock);
-
-        // 激活窗口
-        window.Activate();
-
-    winrt::Windows::UI::Xaml::Application::Start([&](auto &&)
-    {
-            auto window = Windows::UI::Xaml::Window::Current();
-    //        auto dispatcher = window.Dispatcher();
-    //       dispatcher.ProcessEvents(CoreProcessEventsOption::ProcessUntilQuit);
-    });
-#endif
-}
-catch(winrt::hresult_error const & e)
+int main()
 {
-    ::fast_io::io::perrln(e.message());
-    return 1;
+    winrt::init_apartment(winrt::apartment_type::single_threaded);
+
+    mddbootstapper mdd;
+    ::winrt::Microsoft::UI::Xaml::Application::Start([](auto &&) { winrt::make<App>(); });
 }
-catch(...)
-{
-    ::fast_io::io::perrln("EH\n");
-    return 1;
-}
+
+/*
+clang++ -c pch.hpp -O3 -std=c++26 -flto=thin --config=d:\cfgs\x86_64-windows-msvc.cfg -fuse-ld=lld
+clang++ -o main.exe main.cpp -include-pch pch.hpp.pch -O3 -std=c++26 -flto=thin -fuse-ld=lld --config=d:\cfgs\x86_64-windows-msvc.cfg -lole32 -loleaut32 -lruntimeobject -lmicrosoft.windowsappruntime.bootstrap
+
+my cfg:
+--target=x86_64-windows-msvc --sysroot=D:/toolchains/windows-msvc-sysroot -fuse-ld=lld -std=c++26 -ID:/libraries/fast_io/include -D_DLL=1 -lmsvcrt
+*/
